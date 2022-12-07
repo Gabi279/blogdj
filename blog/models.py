@@ -1,11 +1,11 @@
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
 
 class Entry(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
+    director = models.ForeignKey('Director', on_delete=models.CASCADE, null=True)
     text = models.TextField()
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -23,7 +23,7 @@ class Entry(models.Model):
     def __str__(self):
         return self.title
 
-class Autor(models.Model):
+class Author(models.Model):
 
     name = models.CharField('Nombre', max_length=100)
     last_name = models.CharField('Apellido', max_length=100)
@@ -38,6 +38,21 @@ class Autor(models.Model):
     class Meta:
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
+    
+    def get_name(self):
+        return self.name
+
+
+class Director(models.Model):
+
+    name = models.CharField('Nombre', max_length=100)
+    last_name = models.CharField('Apellido', max_length=100)
+    age = models.IntegerField('Edad')
+
+
+    class Meta:
+        verbose_name = 'Director'
+        verbose_name_plural = 'Directores'
     
     def get_name(self):
         return self.name
