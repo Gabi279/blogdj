@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
-from .models import Entry
-
-
-class BlogView(TemplateView):
-    template_name = "blog/entry.html"
+from .models import Entry, Author
+from blog.forms import EntryForm
 
 
-# def entry(request):
-#     return render(request, 'blog/entry.html', {})
+class HomeView(TemplateView):
+    template_name = "index.html"
+
+class AuthorListView(ListView):
+    template_name = "blog/autores.html"
+    paginate_by = 5
+    ordering = 'name'
+    model = Author
+
+

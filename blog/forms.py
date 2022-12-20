@@ -6,4 +6,4 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ('title', 'text',)
+        fields = ('__all__')
