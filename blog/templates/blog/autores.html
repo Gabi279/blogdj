@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Autores{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <div class="container">
+        <h1>Autores</h1>
+        <ul>
+            {% for autor in object_list %}
+                <li> {{autor}} </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+
+{% endblock content %}
