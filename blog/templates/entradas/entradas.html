@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Entradas del blog{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <div class="container">
+        <h1>Entradas</h1>
+        <form method="get">
+            <input type="text" name="kword" id="kword" placeholder="Buscar...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <ul>
+            {% for e in entrada %}
+                <li> {{e}} </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="container">
+        <a href="nueva_entrada">Nuevo</a>
+    </div>
+
+{% endblock content %}

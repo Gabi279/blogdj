@@ -1,16 +1,22 @@
 from django.db import models
 from django.utils import timezone
 
+from .managers import HomeManager
+
+
 
 class Entry(models.Model):
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     director = models.ForeignKey('Director', on_delete=models.CASCADE, null=True)
     text = models.TextField()
+    image = models.ImageField(("Imagen"), upload_to='Entry', null=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
+
+    objects = HomeManager()
 
     class Meta:
         verbose_name = 'Entrada'
@@ -39,8 +45,8 @@ class Author(models.Model):
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
     
-    def get_name(self):
-        return self.name
+    def __str__(self):
+        return self.name + ' ' + self.last_name
 
 
 class Director(models.Model):
@@ -54,5 +60,5 @@ class Director(models.Model):
         verbose_name = 'Director'
         verbose_name_plural = 'Directores'
     
-    def get_name(self):
-        return self.name
+    def __str__(self):
+        return self.name + ' ' + self.last_name
