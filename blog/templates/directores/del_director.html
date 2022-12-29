@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar director{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <div class="container">
+        <h2>Director</h2>
+        <h6>¿Estás seguro de eliminar a {{director.name}} {{director.last_name}}?</h6>
+        <div class="mb-3">
+            <form method="post">{% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-danger" type="submit">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    
+
+{% endblock content %}

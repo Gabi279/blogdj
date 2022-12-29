@@ -11,6 +11,7 @@ class Entry(models.Model):
     director = models.ForeignKey('Director', on_delete=models.CASCADE, null=True)
     text = models.TextField()
     image = models.ImageField(("Imagen"), upload_to='Entry', null=True)
+    #photo = models.ImageField(upload_to='entradas', blank=True, null=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(

@@ -1,21 +1,64 @@
 {% extends 'base.html' %}
 
-{% block title %}Autores{% endblock title %}
+{% block title %}directores{% endblock title %}
 
 {% block content %}
 {% include 'includes/header.html' %}
 
     <div class="container">
         <h1>Directores</h1>
-        <ul>
-            {% for director in object_list %}
-                <li> {{director}} </li>
+    </div>
+
+    <div class="container">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Editar/Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for director in object_list %}
+            <tr>
+                <th scope="row">{{director.id}}</th>
+                <td>{{director.name}}</td>
+                <td>{{director.last_name}}</td>
+                <td>
+                    <a class="nav-link active" aria-current="page" href="{% url 'urls_app:modificar-director' director.id %}">Editar</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'urls_app:eliminar-director' director.id %}">Eliminar</a>
+                </td>
+            </tr>
             {% endfor %}
-        </ul>
+            </tbody>
+        </table>
     </div>
     
     <div class="container">
-        <a href="nuevo_director">Nuevo</a>
+        <a class="btn btn-primary" href="nuevo_director">Nuevo</a>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item ">
+                <a class="page-link" href="?page={{page_obj.previous_page_number}}">Anterior</a>
+            </li>
+            {% endif %}
+            
+            {% for pagina in paginator.page_range %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{pagina}}"> {{pagina}} </a>
+            </li>
+            {% endfor %}
+                
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 
 {% endblock content %}
