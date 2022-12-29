@@ -20,14 +20,14 @@
             </tr>
             </thead>
             <tbody>
-                {% for autor in object_list %}
+                {% for a in creador %}
             <tr>
-                <th scope="row">{{autor.id}}</th>
-                <td>{{autor.name}}</td>
-                <td>{{autor.last_name}}</td>
+                <th scope="row">{{a.id}}</th>
+                <td>{{a.name}}</td>
+                <td>{{a.last_name}}</td>
                 <td>
-                    <a class="nav-link" href="{% url 'urls_app:modificar-autor' autor.id %}">Editar</a>
-                    <a class="nav-link" href="{% url 'urls_app:eliminar-autor' autor.id %}">Eliminar</a>
+                    <a class="nav-link" href="{% url 'urls_app:modificar-autor' a.id %}">Editar</a>
+                    <a class="nav-link" href="{% url 'urls_app:eliminar-autor' a.id %}">Eliminar</a>
                 </td>
             </tr>
             {% endfor %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Entradas del blog{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <div class="container">
+        <h1>{{object.title}}</h1>
+    </div>
+
+    <div>
+        <h4>{{object.resume}}</h4>
+        <h4>{{object.text}}</h4>
+    </div>
+
+{% endblock content %}

@@ -6,8 +6,8 @@ admin.site.register(Director)
 
 class EntryAdmin(admin.ModelAdmin):
     list_display = (
-        'author',
         'title',
+        'author',
         'director',
     )
 

@@ -6,6 +6,7 @@ app_name = 'urls_app'
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('entradas', views.EntryListView.as_view(), name='entradas'),
+    path('ver_entradas/<slug>', views.EntryDetail.as_view(), name='ver-entradas'),
     path('autores', views.AuthorListView.as_view(), name='autores'),
     path('directores', views.DirectorListView.as_view(), name='directores'),
 

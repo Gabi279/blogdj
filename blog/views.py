@@ -4,7 +4,8 @@ from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    DetailView
 )
 
 from .models import Entry, Author, Director
@@ -17,7 +18,11 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context["vistas"] = Entry.objects.filter(image = 'image').order_by('-created_date')[:3]
         return context
-    
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get('kword', '')
+        list = Entry.objects.filter(title__icontains = palabra_clave)[:3] 
+        return list
 
 """vistas entradas"""
 class EntryListView(ListView):
@@ -25,15 +30,18 @@ class EntryListView(ListView):
     context_object_name = 'entrada'
     
     def get_queryset(self):
-        palabra_clave = self.request.GET.get('kword',)
-        list = Entry.objects.filter(title = palabra_clave) 
+        palabra_clave = self.request.GET.get('kword', '')
+        list = Entry.objects.filter(title__icontains = palabra_clave)[:3] 
         return list
+
+class EntryDetail(DetailView):
+    template_name='entradas/detail_entry.html'
+    model = Entry
 
 class EntryCreateView(CreateView):
     template_name = "entradas/new_entry.html"
     model = Entry
     fields = ('__all__')
-
 
 class EntryUpdateView(UpdateView):
     template_name = "entradas/up_entrada.html"
@@ -53,6 +61,7 @@ class AuthorListView(ListView):
     paginate_by = 5
     ordering = 'name'
     model = Author
+    context_object_name = 'creador'
 
 class AuthorCreateView(CreateView):
     template_name = "autores/new_author.html"
