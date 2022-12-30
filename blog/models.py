@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 
-from .managers import HomeManager
+from .managers import AuthorSalaryManager, HomeManager
 
 
 
@@ -68,6 +68,7 @@ class Author(models.Model):
     def __str__(self):
         return self.name + ' ' + self.last_name
 
+    objects = AuthorSalaryManager()
 
 class Director(models.Model):
 

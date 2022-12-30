@@ -63,6 +63,16 @@ class AuthorListView(ListView):
     model = Author
     context_object_name = 'creador'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cont_visit"] = Author.objects.contar_visitas()
+        context["sueldo_min"] = Author.objects.calcular_sueldo_min()
+        context["sueldo_max"] = Author.objects.calcular_sueldo_max()
+        context["sueldo_promedio"] = Author.objects.calcular_sueldo_promedio()
+
+        return context
+    
+
 class AuthorCreateView(CreateView):
     template_name = "autores/new_author.html"
     model = Author

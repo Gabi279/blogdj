@@ -15,18 +15,22 @@
 
     </div>
 
-    <div class="container">
+    <main class="container">
         {% for post in entrada %}
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'post.image.url' %}" class="card-img-top" alt="{{post.title}} imagen">
-            <div class="card-body">
-              <h5 class="card-title">{{post.title}}</h5>
-              <p class="card-text">{{post.resume | truncatechars:50 }}</p>
-              <a href="{% url 'urls_app:ver-entradas' post.slug %}" class="btn btn-primary">Ir a entrada</a>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    {% comment %} <img src="{% static 'post.image.url' %}" class="card-img-top" alt="{{post.title}} imagen"> {% endcomment %}
+                    <div class="card-body">
+                      <h5 class="card-title">{{post.title}}</h5>
+                      <p class="card-text">{{post.resume | truncatechars:50 }}</p>
+                      <a href="{% url 'urls_app:ver-entradas' post.slug %}" class="btn btn-primary">Ir a entrada</a>
+                    </div>
+                  </div>
             </div>
-          </div>
+        </div>
         {% endfor %}
-    </div>
+    </main>
       
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
