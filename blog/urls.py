@@ -8,6 +8,7 @@ urlpatterns = [
     path('entradas', views.EntryListView.as_view(), name='entradas'),
     path('ver_entradas/<slug>', views.EntryDetail.as_view(), name='ver-entradas'),
     path('autores', views.AuthorListView.as_view(), name='autores'),
+    path('autores_pdf', views.AuthorListPDFView.as_view(), name='autores-pdf'),
     path('directores', views.DirectorListView.as_view(), name='directores'),
 
     #create

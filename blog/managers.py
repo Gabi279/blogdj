@@ -1,5 +1,8 @@
+from datetime import date
+
 from django.db import models
 from django.db.models import Count, Max, Min, Avg
+
 
 class HomeManager(models.Manager):
 
@@ -34,3 +37,5 @@ class AuthorSalaryManager(models.Manager):
     def calcular_sueldo_promedio(self):
         resultado = self.aggregate(Avg('salary'))
         return resultado
+
+    

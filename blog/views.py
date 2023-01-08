@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.generic import (
+    View,
     TemplateView,
     ListView,
     CreateView,
@@ -9,7 +11,7 @@ from django.views.generic import (
 )
 
 from .models import Entry, Author, Director
-
+from .functions import convert_to_pdf
 
 class HomeView(TemplateView):
     template_name = "index.html"
@@ -23,6 +25,7 @@ class HomeView(TemplateView):
         palabra_clave = self.request.GET.get('kword', '')
         list = Entry.objects.filter(title__icontains = palabra_clave)[:3] 
         return list
+
 
 """vistas entradas"""
 class EntryListView(ListView):
@@ -71,6 +74,25 @@ class AuthorListView(ListView):
         context["sueldo_promedio"] = Author.objects.calcular_sueldo_promedio()
 
         return context
+
+class AuthorListPDFView(TemplateView):
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cont_visit"] = Author.objects.contar_visitas()
+        context["sueldo_min"] = Author.objects.calcular_sueldo_min()
+        context["sueldo_max"] = Author.objects.calcular_sueldo_max()
+        context["sueldo_promedio"] = Author.objects.calcular_sueldo_promedio()
+
+        return context
+
+    def get(self, request, *args, **kwargs):
+        creador = Author.objects.all()
+        data = {
+            'creador' : creador
+        }
+        pdf = convert_to_pdf('autores/autores_pdf.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
     
 
 class AuthorCreateView(CreateView):
