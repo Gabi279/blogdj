@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF</title>
 </head>
@@ -16,9 +17,11 @@
     <h2>Lista de autores</h2>
     <table border="1">
         <thead>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Trabajo</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Salario</th>
+            <th>Fecha de cumpleaños</th>
         </thead>
         <tbody>
             {% for c in creador %}
@@ -33,9 +36,14 @@
         </tbody>
     </table>
 
-    <div>
-        <h4> {{cont_visit}} </h4>
+    <div class="container">
+        <h6>Sueldo mínimo: {{sueldo_min}} </h6>
+        <h6>Sueldo máximo: {{sueldo_max}} </h6>
+        <h6>Sueldo promedio: {{sueldo_promedio}} </h6>
     </div>
+
+    sueldo promedio, sueldo mas alto, sueldo mas bajo,
+    diferencia entre sueldo mas alto y sueldo mas bajo
 
 </body>
 </html>

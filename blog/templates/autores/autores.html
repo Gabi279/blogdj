@@ -13,7 +13,7 @@
         <table class="table table-borderless">
             <thead>
             <tr>
-                <th scope="col"></th>
+                <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Modificar/Eliminar</th>
@@ -63,10 +63,13 @@
     </nav>
 
     <div class="container">
-        <h6>Total de visitas: {{cont_visit}} </h6>
-        <h6>Sueldo mínimo: {{sueldo_min}} </h6>
-        <h6>Sueldo máximo: {{sueldo_max}} </h6>
-        <h6>Sueldo promedio: {{sueldo_promedio}} </h6>
+        {% for c in object %}
+            <h6>Total de visitas: {{c.cont_visit}} </h6>
+        {% endfor %}
+            <h6>Sueldo mínimo: {{sueldo_min}} </h6>
+            <h6>Sueldo máximo: {{sueldo_max}} </h6>
+            <h6>Sueldo promedio: {{ sueldo_promedio}} </h6>
+
     </div>
     
 
