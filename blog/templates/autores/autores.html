@@ -69,6 +69,11 @@
             <h6>Sueldo promedio: {{sueldo_promedio}} </h6>
 
     </div>
+
+    <div class="container">
+        <a class="btn btn-primary" href="{% url 'urls_app:autores-pdf' %}" role="button" aria-disabled="true">Imprimir planilla PDF</a>
+    </div>
+
     
 
 {% endblock content %}
